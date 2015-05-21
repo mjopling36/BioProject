@@ -1,0 +1,47 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\begin{document}
+% taken from
+% https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{tikzpicture}[node distance=2in]
+
+\node (biuret) [process] {Biuret};
+\node (burn) [process, right of=biuret] {Burn};
+\node (inorganic) [io, right of=burn] {Inorganic};
+\node (organic) [io, below of=burn] {Organic};
+\node (feulgen) [process, below of=organic] {Feulgen};
+\node (tetra) [process, left of=feulgen] {Tetrazolium};
+
+\node (alive) [io, below of=tetra] {Alive};
+\node (onceAlive) [io, below of=feulgen] {Once Alive};
+\node (neverAlive) [io, below of=feulgen] {Never Alive};
+
+
+\draw [arrow] (burn) -- node[anchor=south] {negative} (inorganic);
+\draw [arrow] (burn) -- node[anchor=east] {positive} (organic);
+
+\draw [arrow] (biuret) -- node[anchor=south] {negative} (burn);
+\draw [arrow] (biuret) -- node[anchor=east] {positive} (tetra);
+
+\draw [arrow] (tetra) -- node[anchor=east] {positive} (alive);
+\draw [arrow] (tetra) -- node[anchor=south] {negative} (feulgen);
+
+\draw [arrow] (feulgen) -- node[anchor=east] {positive} (onceAlive);
+\draw [arrow] (feulgen) -- node[anchor=east] {negative} (organic);
+
+\end{tikzpicture}
+\end{document}
