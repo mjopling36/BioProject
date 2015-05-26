@@ -7,6 +7,7 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{positioning}
 \begin{document}
 % taken from
 % https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
@@ -22,13 +23,13 @@
 \node (biuret) [process] {Biuret};
 \node (burn) [process, right of=biuret] {Burn};
 \node (inorganic) [io, right of=burn] {Inorganic};
-\node (organic) [io, below of=burn] {Organic};
-\node (feulgen) [process, below of=organic] {Feulgen};
+\node (organic) [io, below=2 cm of burn] {Organic};
+\node (feulgen) [process, below=2 cm of organic] {Feulgen};
 \node (tetra) [process, left of=feulgen] {Tetrazolium};
 
-\node (alive) [io, below of=tetra] {Alive};
-\node (onceAlive) [io, below of=feulgen] {Once Alive};
-\node (neverAlive) [io, below of=feulgen] {Never Alive};
+\node (alive) [io, below=2 cm of tetra] {Alive};
+\node (onceAlive) [io, below=2cm of feulgen] {Once Alive};
+\node (neverAlive) [io, right of=feulgen] {Never Alive};
 
 
 \draw [arrow] (burn) -- node[anchor=south] {negative} (inorganic);
@@ -44,4 +45,21 @@
 \draw [arrow] (feulgen) -- node[anchor=east] {negative} (organic);
 
 \end{tikzpicture}
+
+\subsection{Appearance}
+\begin{itemize}
+\item[13] graphite
+\item[23] turtle food
+\item[21] wood
+\item[24] mulch
+\end{itemize}
+
+\subsection{Biuret Test}
+\begin{itemize}
+\item[13]  Looks Black; under microscope droplets have purple edges. Inconclusive.
+\item[23] Looked yellowish originally, turned reddish brown. Inconclusive.
+\item[21]  Looks dark red, still dark red under microscope. Inconclusive.
+\item[24]
+\end{itemize}
+
 \end{document}
